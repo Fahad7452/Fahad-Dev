@@ -1,10 +1,10 @@
+import { useEffect } from "react";
 import "./styles/Work.css";
 import WorkImage from "./WorkImage";
-import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { useGSAP } from "@gsap/react";
+import gsap from "gsap";
 
-gsap.registerPlugin(useGSAP, ScrollTrigger);
+gsap.registerPlugin(ScrollTrigger);
 
 interface Project {
   title: string;
@@ -67,32 +67,25 @@ const projects: Project[] = [
 ];
 
 const Work = () => {
-  useGSAP(() => {
-    // Wait for images to load
-    setTimeout(() => {
+  useEffect(() => {
+    const timeout = setTimeout(() => {
       const workFlex = document.querySelector(".work-flex") as HTMLElement;
       const workBoxes = document.querySelectorAll(".work-box");
-      
+
       if (!workFlex || workBoxes.length === 0) return;
-      
-      // Calculate based on actual box widths
+
       let totalWidth = 0;
       workBoxes.forEach((box) => {
         totalWidth += (box as HTMLElement).offsetWidth;
       });
-      
-      // Get viewport width
+
       const viewportWidth = workFlex.parentElement?.offsetWidth || window.innerWidth;
-      
-      // Distance to translate = total width - viewport width
       const scrollDistance = totalWidth - viewportWidth;
-      
+
       console.log("Total Width:", totalWidth, "Viewport:", viewportWidth, "Scroll Distance:", scrollDistance);
-      
-      // Kill any existing scroll trigger
+
       ScrollTrigger.getById("work-scroll")?.kill();
-      
-      // Create timeline
+
       gsap.to(".work-flex", {
         scrollTrigger: {
           trigger: ".work-section",
@@ -109,9 +102,11 @@ const Work = () => {
     }, 500);
 
     return () => {
+      clearTimeout(timeout);
       ScrollTrigger.getById("work-scroll")?.kill();
     };
   }, []);
+
   return (
     <div className="work-section" id="work">
       <div className="work-container section-container">
@@ -132,9 +127,9 @@ const Work = () => {
                 <h4>Technologies</h4>
                 <p>{project.technologies}</p>
                 {project.link && (
-                  <a 
-                    href={project.link} 
-                    target="_blank" 
+                  <a
+                    href={project.link}
+                    target="_blank"
                     rel="noopener noreferrer"
                     style={{ marginTop: "10px", color: "var(--accentColor)", textDecoration: "none", fontSize: "14px" }}
                   >

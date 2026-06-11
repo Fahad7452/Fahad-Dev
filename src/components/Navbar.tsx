@@ -2,43 +2,50 @@ import { useEffect } from "react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import HoverLinks from "./HoverLinks";
 import { gsap } from "gsap";
-import { ScrollSmoother } from "gsap-trial/ScrollSmoother";
 import "./styles/Navbar.css";
 
-gsap.registerPlugin(ScrollSmoother, ScrollTrigger);
-export let smoother: ScrollSmoother;
+gsap.registerPlugin(ScrollTrigger);
+
+// Smoother replacement — simple scroll API
+export const smoother = {
+  paused: (_val: boolean) => {},
+  scrollTop: (_val: number) => { window.scrollTo(0, _val); },
+  scrollTo: (target: string | null, _smooth: boolean, _pos: string) => {
+    if (!target) return;
+    const el = document.querySelector(target);
+    if (el) el.scrollIntoView({ behavior: "smooth" });
+  },
+};
 
 const Navbar = () => {
   useEffect(() => {
-    smoother = ScrollSmoother.create({
-      wrapper: "#smooth-wrapper",
-      content: "#smooth-content",
-      smooth: 1.7,
-      speed: 1.7,
-      effects: true,
-      autoResize: true,
-      ignoreMobileResize: true,
-    });
+    // Enable native smooth scrolling
+    document.documentElement.style.scrollBehavior = "smooth";
 
-    smoother.scrollTop(0);
-    smoother.paused(true);
+    // Scroll to top on load
+    window.scrollTo(0, 0);
 
-    let links = document.querySelectorAll(".header ul a");
+    const links = document.querySelectorAll(".header ul a");
     links.forEach((elem) => {
-      let element = elem as HTMLAnchorElement;
+      const element = elem as HTMLAnchorElement;
       element.addEventListener("click", (e) => {
         if (window.innerWidth > 1024) {
           e.preventDefault();
-          let elem = e.currentTarget as HTMLAnchorElement;
-          let section = elem.getAttribute("data-href");
-          smoother.scrollTo(section, true, "top top");
+          const el = e.currentTarget as HTMLAnchorElement;
+          const section = el.getAttribute("data-href");
+          if (section) {
+            const target = document.querySelector(section);
+            if (target) target.scrollIntoView({ behavior: "smooth" });
+          }
         }
       });
     });
+
     window.addEventListener("resize", () => {
-      ScrollSmoother.refresh(true);
+      ScrollTrigger.refresh(true);
     });
   }, []);
+
   return (
     <>
       <div className="header">
@@ -46,11 +53,11 @@ const Navbar = () => {
           <img src="/logo.jpg" alt="Logo" style={{ height: "40px", width: "auto", borderRadius: "50%" }} />
         </a>
         <a
-          href="mailto:fadi.mirza7452@mail.com  "
+          href="mailto:fadi.mirza7452@mail.com"
           className="navbar-connect"
           data-cursor="disable"
         >
-         Fadi.mirza7452@mail.com  
+          Fadi.mirza7452@mail.com
         </a>
         <ul>
           <li>

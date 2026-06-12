@@ -107,10 +107,14 @@ const Work = () => {
 
       ScrollTrigger.getById("work-scroll")?.kill();
 
+      // Check if it's mobile
+      const isMobile = window.innerWidth <= 600;
+      const startPosition = isMobile ? "top 10%" : "top top";
+
       gsap.to(".work-flex", {
         scrollTrigger: {
           trigger: ".work-section",
-          start: "top top",
+          start: startPosition,
           end: `+=${scrollDistance}`,
           scrub: 1,
           pin: true,

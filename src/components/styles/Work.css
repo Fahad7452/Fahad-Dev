@@ -26,6 +26,11 @@
   display: none; /* default: hidden */
 }
 
+/* Web/Desktop mein h2 dikhao */
+.work-section h2 {
+  display: block; /* default: show on web */
+}
+
 @media only screen and (max-width: 600px) {
   .work-section h2 {
     display: none; /* h2 mobile pe hide */
@@ -235,11 +240,5 @@
   }
   .work-flex {
     height: auto;
-  }
-}
-
-@media only screen and (max-width: 600px) {
-  .work-section h2 {
-    display: none;
   }
 }

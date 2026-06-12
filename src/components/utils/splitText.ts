@@ -14,8 +14,13 @@ gsap.registerPlugin(ScrollTrigger);
 export default function setSplitText() {
   ScrollTrigger.config({ ignoreMobileResize: true });
   if (window.innerWidth < 900) return;
+
+  // Sirf woh .title elements lo jinka koi child .do-h2 ya .hat-h2 nahi
+  const allTitles = document.querySelectorAll<ParaElement>(".title");
+  const titles: ParaElement[] = Array.from(allTitles).filter(
+    (el) => !el.querySelector(".do-h2, .hat-h2")
+  );
   const paras: NodeListOf<ParaElement> = document.querySelectorAll(".para");
-  const titles: NodeListOf<ParaElement> = document.querySelectorAll(".title");
 
   const TriggerStart = window.innerWidth <= 1024 ? "top 60%" : "20% 60%";
   const ToggleAction = "play pause resume reverse";

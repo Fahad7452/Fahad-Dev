@@ -1,4 +1,5 @@
 import { lazy, PropsWithChildren, useEffect, useState } from "react";
+import Lenis from "lenis";
 import About from "./About";
 import Career from "./Career";
 import Contact from "./Contact";
@@ -16,6 +17,26 @@ const MainContainer = ({ children }: PropsWithChildren) => {
   const [isDesktopView, setIsDesktopView] = useState<boolean>(
     window.innerWidth > 1024,
   );
+
+  useEffect(() => {
+    // Lenis smooth scroll setup
+    const lenis = new Lenis({
+      duration: 1.4,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      orientation: "vertical",
+      smoothWheel: true,
+    });
+
+    function raf(time: number) {
+      lenis.raf(time);
+      requestAnimationFrame(raf);
+    }
+    requestAnimationFrame(raf);
+
+    return () => {
+      lenis.destroy();
+    };
+  }, []);
 
   useEffect(() => {
     const resizeHandler = () => {

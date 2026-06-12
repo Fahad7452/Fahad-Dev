@@ -48,7 +48,6 @@
     transform: translate(-95%, -75%) rotateZ(360deg);
   }
 }
-
 .landing-circle2 {
   top: 50%;
   right: 0%;
@@ -88,7 +87,6 @@
   height: 400px;
   z-index: 1;
   background-color: #0acfc8;
-  transform: translate(-50%, 36%) scaleX(1.4);
   box-shadow: inset 66px 35px 85px 0px rgba(0, 58, 76, 0.75);
   filter: blur(50px);
   border-radius: 50%;
@@ -98,7 +96,6 @@
   opacity: 0;
 }
 .character-model {
-  height: 80%;
   height: 80vh;
   position: absolute;
   max-width: 1920px;
@@ -169,7 +166,6 @@
   font-weight: 300;
   letter-spacing: 2px;
 }
-
 .landing-intro h1 {
   margin: 0;
   letter-spacing: 2px;
@@ -178,11 +174,6 @@
   font-weight: 500;
   font-family: "Geist", sans-serif;
 }
-
-/* .landing-intro h1 span {
-   font-weight: 200; 
-} */
-
 .landing-info {
   position: absolute;
   right: 50%;
@@ -253,52 +244,45 @@ h2.landing-info-h2 {
   top: 0;
   left: 0;
 }
-@media screen and (min-width: 500px) {
-  .landing-circle2 {
-    display: block;
-  }
-  .character-model {
-    z-index: 0;
+
+/* ---- MOBILE (max 499px) ---- */
+@media screen and (max-width: 499px) {
+  .landing-info {
+    bottom: 30px;
   }
   .landing-info h3 {
-    font-size: 18px;
-  }
-  .landing-intro h2 {
-    font-size: 18px;
-  }
-  .landing-intro h1 {
-    font-size: 30px;
-    line-height: 30px;
+    font-size: 16px;
   }
   .landing-info h2 {
-    font-size: 35px;
-    line-height: 40px;
+    margin-top: -30px;  /* overlap hatao */
+    font-size: 28px;
+    line-height: 34px;
   }
   h2.landing-info-h2 {
-    font-size: 38px;
+    font-size: 28px;
+  }
+  .landing-intro h1 {
+    font-size: 24px;
+    line-height: 26px;
   }
 }
+
+@media screen and (min-width: 500px) {
+  .landing-circle2 { display: block; }
+  .character-model { z-index: 0; }
+  .landing-info h3 { font-size: 18px; }
+  .landing-intro h2 { font-size: 18px; }
+  .landing-intro h1 { font-size: 30px; line-height: 30px; }
+  .landing-info h2 { font-size: 35px; line-height: 40px; }
+  h2.landing-info-h2 { font-size: 38px; }
+}
 @media screen and (min-width: 768px) {
-  .character-model {
-    height: 80vh;
-  }
-  .landing-intro h2 {
-    font-size: 25px;
-  }
-  .landing-intro h1 {
-    font-size: 40px;
-    line-height: 35px;
-  }
-  .landing-info h3 {
-    font-size: 25px;
-  }
-  .landing-info h2 {
-    font-size: 45px;
-    line-height: 42px;
-  }
-  h2.landing-info-h2 {
-    font-size: 55px;
-  }
+  .character-model { height: 80vh; }
+  .landing-intro h2 { font-size: 25px; }
+  .landing-intro h1 { font-size: 40px; line-height: 35px; }
+  .landing-info h3 { font-size: 25px; }
+  .landing-info h2 { font-size: 45px; line-height: 42px; }
+  h2.landing-info-h2 { font-size: 55px; }
 }
 @media screen and (min-width: 1025px) {
   .character-model {
@@ -308,16 +292,13 @@ h2.landing-info-h2 {
     position: fixed;
   }
   .character-model::after,
-  .character-model::before {
-    display: none;
-  }
+  .character-model::before { display: none; }
   .landing-intro {
     top: 50%;
     left: auto;
     right: 66%;
     transform: translate(0%, -50%);
   }
-
   .landing-info {
     bottom: auto;
     top: 51%;
@@ -335,7 +316,6 @@ h2.landing-info-h2 {
     right: 70%;
     transform: translate(0%, -50%);
   }
-
   .landing-info {
     bottom: auto;
     top: 51%;
@@ -347,21 +327,9 @@ h2.landing-info-h2 {
   }
 }
 @media screen and (min-width: 1600px) {
-  .landing-intro h2 {
-    font-size: 35px;
-  }
-  .landing-intro h1 {
-    font-size: 60px;
-    line-height: 55px;
-  }
-  .landing-info h3 {
-    font-size: 35px;
-  }
-  .landing-info h2 {
-    font-size: 65px;
-    line-height: 62px;
-  }
-  h2.landing-info-h2 {
-    font-size: 75px;
-  }
+  .landing-intro h2 { font-size: 35px; }
+  .landing-intro h1 { font-size: 60px; line-height: 55px; }
+  .landing-info h3 { font-size: 35px; }
+  .landing-info h2 { font-size: 65px; line-height: 62px; }
+  h2.landing-info-h2 { font-size: 75px; }
 }

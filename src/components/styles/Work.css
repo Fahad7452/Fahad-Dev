@@ -16,6 +16,29 @@
   transform: translateZ(0);
   will-change: transform;
 }
+
+
+
+
+/* Pehle wali fahad CSS hatao aur yeh lagao */
+
+.fahad {
+  display: none; /* default: hidden */
+}
+
+@media only screen and (max-width: 600px) {
+  .work-section h2 {
+    display: none; /* h2 mobile pe hide */
+  }
+
+  .fahad {
+    display: block; /* fahad span mobile pe show */
+    font-size: 35px;
+    padding-left: 16px;
+    padding-bottom: 50px;
+    font-weight: 500;
+  }
+}
 .work-container {
   margin: auto;
   display: flex;
@@ -212,5 +235,11 @@
   }
   .work-flex {
     height: auto;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .work-section h2 {
+    display: none;
   }
 }

@@ -10,6 +10,15 @@ import { useEffect } from "react";
 import HoverLinks from "./HoverLinks";
 
 const SocialIcons = () => {
+  const handleResumeDownload = () => {
+    const link = document.createElement('a');
+    link.href = '/Full Stack Developer Fahad Nadeem Resume Dec 2022 - 2026.pdf';
+    link.download = 'Fahad_Nadeem_Resume.pdf';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
   useEffect(() => {
     const social = document.getElementById("social") as HTMLElement;
 
@@ -80,7 +89,7 @@ const SocialIcons = () => {
           </a>
         </span>
       </div>
-      <a className="resume-button" href="#">
+      <a className="resume-button" href="#" onClick={handleResumeDownload}>
         <HoverLinks text="RESUME" />
         <span>
           <TbNotes />
